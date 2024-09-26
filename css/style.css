@@ -1,0 +1,43 @@
+.data-hora {
+    text-align: center;
+}
+
+#btn-dialog-fechar {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#div-btn-registrar-ponto{
+    text-align: center;
+}
+
+.data-hora p{
+    font-family: "Rajdhani" sans-serif;
+    font-weight: 300;
+    font-size: normal;
+    font-size: 3rem;
+}
+#btn-registrar-ponto{
+    font-size: 1.5rem;
+    padding: 25px;
+    border: 0px;
+    background-color: blueviolet;
+    color: aliceblue;
+
+}
+#btn-registrar-ponto{
+    background-color: brown;
+}
+btn-registrar-ponto:active {
+    background-color: black;}
+#select-tipos-ponto {
+        font-size: 1.5rem;
+        padding: 25px;
+    
+ }
+#dialog-ponto p {
+    font-family: "Rajdhnani" , "sans-serif";
+    font-weight: 300;
+    font-size: normal ;
+    font-size: 2rem;
+}
