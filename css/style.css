@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+}
+
 .data-hora {
     text-align: center;
 }
@@ -15,14 +20,13 @@
 .data-hora p {
     font-family: "Rajdhani", sans-serif;
     font-weight: 300;
-    font-style: normal;
     font-size: 3rem;
 }
 
 #btn-registrar-ponto, #btn-dialog-registrar-ponto {
     font-size: 1.5rem;
     padding: 25px;
-    border: 0px;
+    border: none;
     background-color: blue;
     color: white;
 }
@@ -32,26 +36,24 @@
 }
 
 #btn-registrar-ponto:active {
-    background-color: black;
+    background-color: rgb(233, 27, 27);
 }
 
 #select-tipos-ponto {
     font-size: 1.5rem;
     padding: 25px;
-    
 }
 
 #dialog-ponto p {
     font-family: "Rajdhani", sans-serif;
     font-weight: 300;
-    font-style: normal;
     font-size: 2rem;    
 }
 
 #btn-dialog-fechar {
     padding: 15px;
-    border: 0px;
-    background-color: red;
+    border: none;
+    background-color: rgb(0, 0, 0);
     color: white;
     font-size: 1.1rem;
 }
@@ -71,4 +73,57 @@
     position: fixed;
     right: 15px;
     bottom: 15px;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh; /* Ocupa toda a altura da viewport */
+    background-color: #d1d1d1;
+    padding: 15px;
+    position: fixed;
+    top: 0; /* Fixa no topo */
+    left: -200px; /* Inicialmente escondido */
+    transition: left 0.3s;
+}
+
+.menu-button {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    position: fixed; /* Muda para fixed */
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+    z-index: 1;
+    border-radius:5px ;
+}
+
+.menu-options button {
+    width: 100%; /* Botões ocupam a largura */
+    font-size: 1.5rem;
+    padding: 15px; /* Espaçamento interno */
+    margin: 10px 0; /* Espaçamento entre os botões */
+    border: none;
+    background-color: blue; /* coor de fundo */
+    color: white; /* Cor do texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s; /* Efeito de transição */
+}
+
+.menu-options button:hover {
+    background-color: #35b7e6; /* Cor ao passar o mouse */
+}
+
+.menu-options button:active {
+    background-color: #092f5a; /* Cor ao clicar */
+}
+
+.sidebar.active {
+    left: 0; /* Mostra o menu ao apert */
+}
+
+.sidebar.active .menu-options {
+    display: block; /* Mostra as opções quando o menu está aberto */
 }

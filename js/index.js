@@ -159,3 +159,17 @@ setInterval(atualizaHoraDialog, 1000);
 
 diaSemana.textContent = daySemana();
 diaMesAno.textContent = dataCompleta();
+
+function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    const menuOptions = document.getElementById("menu-options");
+    sidebar.classList.toggle("active");
+
+    if (sidebar.classList.contains("active")) {
+        menuOptions.style.display = "block"; // Show options
+    } else {
+        menuOptions.style.display = "none"; // Hide options
+    }
+}
+
+// O restante do seu código permanece o mesmo...
