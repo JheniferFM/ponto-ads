@@ -9,11 +9,21 @@ const arrayDayWeek = ["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Q
 const dialogPonto = document.getElementById("dialog-ponto");
 
 
-navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position);
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-});
+
+function getUserLocation() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            let userLocation = {
+                "latitude": position.coords.latitude,
+                "longitude": position.coords.longitude
+            }
+            resolve(userLocation);
+        },
+        (error) => {
+            reject(error);
+        })
+    })
+}
 
 
 let proxPonto = {
@@ -22,6 +32,12 @@ let proxPonto = {
     "volta-intervalo": "saida",
     "saida": "entrada"
 }
+
+
+let dialogHora = document.getElementById("dialog-hora");
+let dialogData = document.getElementById("dialog-data");
+
+dialogData.textContent = "Data: " + dataCompleta();
 
 // TO-DO:
 // apresentar para o usuário a data e hora atualizados
@@ -33,6 +49,9 @@ btnRegistrarPonto.addEventListener("click", () => {
     let ultimoPonto = localStorage.getItem("tipoUltimoPonto");
     dialogSelect.value = proxPonto[ultimoPonto];
     
+    
+    //dialogHora.textContent = horaCompleta();
+
     dialogPonto.showModal();
 });
 
@@ -65,16 +84,21 @@ function salvarRegistroLocalStorage(ponto) {
     localStorage.setItem("registro", JSON.stringify(pontos));
 }
 
+const divAlerta = document.getElementById("div-alerta");
+
 const btnDialogRegistrarPonto = document.getElementById("btn-dialog-registrar-ponto");
-btnDialogRegistrarPonto.addEventListener("click", () => {
+btnDialogRegistrarPonto.addEventListener("click", async () => {
     let data = dataCompleta();
     let hora = horaCompleta();
     let tipoPonto = document.getElementById("select-tipos-ponto").value;
+
+    let location = await getUserLocation();
 
     let ponto = {
         "data": data,
         "hora": hora,
         "tipo": tipoPonto,
+        "location": location,
         "id": 1
     }
 
@@ -94,9 +118,17 @@ btnDialogRegistrarPonto.addEventListener("click", () => {
 
     console.log(ponto);
     dialogPonto.close();
+
+    divAlerta.classList.remove("hidden");
+    divAlerta.classList.add("show");
+
+    setTimeout(() => {
+        divAlerta.classList.remove("show");
+        divAlerta.classList.add("hidden");
+    }, 5000);
 });
 
-function daySemana() {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+function daySemana() {
     const date = new Date();
     return arrayDayWeek[date.getDay()];
 }
@@ -115,8 +147,15 @@ function atualizaHora() {
     horaMinSeg.textContent = horaCompleta();
 }
 
+function atualizaHoraDialog() {
+    dialogHora.textContent = "Hora: " + horaCompleta();
+}
+
 atualizaHora();
 setInterval(atualizaHora, 1000);
+
+atualizaHoraDialog()
+setInterval(atualizaHoraDialog, 1000);
 
 diaSemana.textContent = daySemana();
 diaMesAno.textContent = dataCompleta();
