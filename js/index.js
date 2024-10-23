@@ -171,5 +171,3 @@ function toggleMenu() {
         menuOptions.style.display = "none"; // Hide options
     }
 }
-
-// O restante do seu código permanece o mesmo...
